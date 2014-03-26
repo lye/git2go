@@ -69,6 +69,11 @@ func (c *Commit) ParentCount() uint {
 	return uint(C.git_commit_parentcount(c.ptr))
 }
 
+func (c *Commit) Time() time.Time {
+	secs := C.git_commit_time(c.ptr)
+	return time.Unix(int64(secs), 0)
+}
+
 // Signature
 
 type Signature struct {
